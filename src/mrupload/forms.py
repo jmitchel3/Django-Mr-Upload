@@ -1,9 +1,11 @@
 from django import forms
 
+from django_file_form.forms import FileFormMixin, MultipleUploadedFileField
+
 from .models import Video
 
 
-class VideoModelForm(forms.ModelForm):
+class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = [
@@ -13,3 +15,5 @@ class VideoModelForm(forms.ModelForm):
         ]
 
 
+class MultipleFileForm(FileFormMixin, forms.Form):
+    video_files = MultipleUploadedFileField(label='Drop files to upload.')

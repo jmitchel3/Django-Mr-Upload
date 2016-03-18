@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Update Video</h1>
+        <form id="update-video-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="btn-group">
+                <input class='btn btn-primary' type='submit' value='Save' />
+            </div>
+        </form>
+    </div>
+{% endblock %}
