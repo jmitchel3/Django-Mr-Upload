@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #third party
-    'crispy_forms',
-
-    #local apps,
+    # Local apps,
     'mrupload',
+
+    # Third party apps
+    'crispy_forms',
+    'django_file_form',
+    'django_file_form.ajaxuploader',
 ]
 
 MIDDLEWARE_CLASSES = [

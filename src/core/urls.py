@@ -18,5 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^upload/', include('mrupload.urls'))
+    url(r'^upload/', include('mrupload.urls')),
+
+    # 3rd party apps
+    url(r'^upload/', include('django_file_form.urls')),
 ]
