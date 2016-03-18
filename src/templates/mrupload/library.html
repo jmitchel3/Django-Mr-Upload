@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Your Library</h1>
+        <ul>
+            {% for video in video_list %}
+                <li>
+                    <a href="{% url 'update_video' video.pk %}">{{ video.title }}</a>
+                </li>
+            {% empty %}
+                No videos uploaded.
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

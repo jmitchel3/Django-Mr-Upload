@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +44,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- jQuery Color for Background Animation -->
     <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-
+    <script src="{% static "ajaxuploader/js/fileuploader.js" %}"></script>
+    <script src="{% static "file_form/file_form.js" %}"></script>
+    <link rel="stylesheet" href="{% static "ajaxuploader/css/fileuploader.css" %}">
     <script>
     $(document).ready(function(){
         {% block jquery %}
