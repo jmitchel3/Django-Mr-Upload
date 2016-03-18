@@ -1,7 +1,5 @@
 import StringIO
 
-from tempfile import NamedTemporaryFile
-
 from django.test import TestCase
 from django.test.client import Client
 from django.conf import settings
@@ -52,7 +50,6 @@ class LibraryViewTest(TestCase):
         expected_url = '{}?next={}'.format(settings.LOGIN_URL, reverse('library'))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, expected_url)
-
 
     def test_list_videos_by_user(self):
         """
@@ -160,7 +157,7 @@ class VideoUpdateViewTest(TestCase):
         self.client.logout()
 
         # When user tries to update a video
-        response = self.client.get(reverse('update_video',kwargs={'pk': self.video.pk}))
+        response = self.client.get(reverse('update_video', kwargs={'pk': self.video.pk}))
 
         # Then user should be redirected to the login page
         # User should be redirected to login page
@@ -197,7 +194,6 @@ class VideoUpdateViewTest(TestCase):
         When a user edits information on the `Video` object, he should
         be redirect to the library page.
         """
-        existing_video = Video.objects.first()
         post_data = {
             'title': 'New Title',
             'description': 'New Description',
