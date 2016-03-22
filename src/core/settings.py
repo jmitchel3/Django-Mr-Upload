@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_file_form',
     'django_file_form.ajaxuploader',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
