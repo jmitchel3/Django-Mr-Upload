@@ -25,5 +25,6 @@ class VideoForm(forms.ModelForm):
                 file_name=self.instance.file.name,
             )
 
+
 class MultipleFileForm(FileFormMixin, forms.Form):
     video_files = MultipleUploadedFileField(label='Drop files to upload.')

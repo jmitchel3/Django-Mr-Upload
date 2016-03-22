@@ -19,10 +19,10 @@ def mr_upload_location(instance, filename):
 
 
 class Video(models.Model):
-    user            = models.ForeignKey(User)
-    title           = models.CharField(max_length=120)
-    file            = models.FileField(upload_to=mr_upload_location)
-    description     = models.TextField()
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=120)
+    file = models.FileField(upload_to=mr_upload_location)
+    description = models.TextField()
 
 
     def __unicode__(self):
