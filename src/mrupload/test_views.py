@@ -1,6 +1,6 @@
 import StringIO
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.client import Client
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -17,6 +17,7 @@ def get_temporary_video_file(file_name):
     return vid_file
 
 
+@override_settings(DEFAULT_FILE_STORAGE='django.core.files.storage.FileSystemStorage')
 class LibraryViewTest(TestCase):
     def setUp(self):
         user = User.objects.create(username='test')
@@ -65,6 +66,7 @@ class LibraryViewTest(TestCase):
         self.assertQuerysetEqual(response.context['video_list'], expected_queryset)
 
 
+@override_settings(DEFAULT_FILE_STORAGE='django.core.files.storage.FileSystemStorage')
 class UploadViewTest(TestCase):
     def setUp(self):
         user = User.objects.create(username='test')
@@ -131,6 +133,7 @@ class UploadViewTest(TestCase):
         self.assertRedirects(response, expected_url, status_code=302)
 
 
+@override_settings(DEFAULT_FILE_STORAGE='django.core.files.storage.FileSystemStorage')
 class VideoUpdateViewTest(TestCase):
     def setUp(self):
         user = User.objects.create(username='test')
