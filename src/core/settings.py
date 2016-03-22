@@ -132,3 +132,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_root')
 
 
 from .third_party_settings import *
+
+
+# File upload restrictions
+MAX_VIDEO_FILE_SIZE = 10000000  # 10 MB

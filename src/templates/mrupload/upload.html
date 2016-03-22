@@ -5,7 +5,14 @@
 <script>
 {% block jquery %}
     $(function(){
-        initUploadFields($('#multiple-file-form'));
+        initUploadFields(
+            $('#multiple-file-form'),
+            {
+                validation: {
+                    acceptFiles: 'video/*',
+                    sizeLimit: {{ MAX_VIDEO_FILE_SIZE }}
+                }
+            });
     });
 {% endblock %}
 </script>

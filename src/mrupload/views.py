@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -20,6 +21,12 @@ class UploadView(LoginRequiredMixin, FormView):
     form_class = MultipleFileForm
     template_name = 'mrupload/upload.html'
     success_url = reverse_lazy('library')
+
+    def get_context_data(self, **kwargs):
+        context = super(UploadView, self).get_context_data(**kwargs)
+        context['MAX_VIDEO_FILE_SIZE'] = settings.MAX_VIDEO_FILE_SIZE
+
+        return context
 
     def form_valid(self, form):
         for video in form.cleaned_data['video_files']:
