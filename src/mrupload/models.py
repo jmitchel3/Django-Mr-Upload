@@ -8,7 +8,7 @@ from django.utils.encoding import smart_text
 
 import boto
 
-from .validators import validate_file_type
+from .validators import validate_file_type, validate_file_size
 
 User =  settings.AUTH_USER_MODEL
 
@@ -25,7 +25,7 @@ class Video(models.Model):
     title = models.CharField(max_length=120)
     file = models.FileField(
         upload_to=mr_upload_location,
-        validators=[validate_file_type],
+        validators=[validate_file_type, validate_file_size],
         max_length=200,
     )
     description = models.TextField()
@@ -37,6 +37,8 @@ class Video(models.Model):
     def get_file_secure_url(self):
         """
         Returns a secure URL for the `file` that was uploaded to S3
+
+        # TODO: needs tests
         """
         conn = boto.s3.connect_to_region(
             settings.S3DIRECT_REGION,
