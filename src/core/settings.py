@@ -135,5 +135,5 @@ from .third_party_settings import *
 
 
 # File upload restrictions
-MAX_VIDEO_FILE_SIZE = 10000000  # 10 MB
+MAX_VIDEO_FILE_SIZE = 10000000  # 10 million KB == 10 MB
 VALID_FILE_MIME_TYPES = ['video/quicktime', 'video/avi', 'video/mpeg', 'video/mp4']
