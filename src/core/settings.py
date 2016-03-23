@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_file_form',
     'django_file_form.ajaxuploader',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,3 +132,8 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_root')
 
 
 from .third_party_settings import *
+
+
+# File upload restrictions
+MAX_VIDEO_FILE_SIZE = 10000000  # 10 million KB == 10 MB
+VALID_FILE_MIME_TYPES = ['video/quicktime', 'video/avi', 'video/mpeg', 'video/mp4']
