@@ -1,20 +1,24 @@
-import StringIO
+import os
 
+from django.core.files import File
 from django.test import TestCase, override_settings
 from django.test.client import Client
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse
+
+import mock
 
 from .models import Video
 
 
 def get_temporary_video_file(file_name):
-    io = StringIO.StringIO(file_name)
-    vid_file = InMemoryUploadedFile(io, None, '{}.avi'.format(file_name), 'avi', io.len, None)
-    vid_file.seek(0)
-    return vid_file
+    current_path = os.path.dirname(os.path.realpath(__file__))
+    file_path = 'test_files/test_quicktime_video.mov'
+    full_path = os.path.join(current_path, file_path)
+    f = open(full_path, 'r')
+    temp_file = File(f)
+    return temp_file
 
 
 @override_settings(DEFAULT_FILE_STORAGE='django.core.files.storage.FileSystemStorage')
@@ -171,7 +175,8 @@ class VideoUpdateViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, expected_url)
 
-    def test_update_page_for_authenticated_user(self):
+    @mock.patch.object(Video, 'get_file_secure_url')
+    def test_update_page_for_authenticated_user(self, get_file_secure_url):
         """
         A logged-in user should be able to access the update video page.
         """
@@ -192,7 +197,8 @@ class VideoUpdateViewTest(TestCase):
         # Then the user should land on a 404 page
         self.assertEqual(response.status_code, 404)
 
-    def test_update_video_details_succesful(self):
+    @mock.patch.object(Video, 'get_file_secure_url')
+    def test_update_video_details_succesful(self, get_file_secure_url):
         """
         When a user edits information on the `Video` object, he should
         be redirect to the library page.

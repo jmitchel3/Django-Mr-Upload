@@ -8,6 +8,8 @@ from django.utils.encoding import smart_text
 
 import boto
 
+from .validators import validate_file_type
+
 User =  settings.AUTH_USER_MODEL
 
 
@@ -21,7 +23,11 @@ def mr_upload_location(instance, filename):
 class Video(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=120)
-    file = models.FileField(upload_to=mr_upload_location)
+    file = models.FileField(
+        upload_to=mr_upload_location,
+        validators=[validate_file_type],
+        max_length=200,
+    )
     description = models.TextField()
 
 
