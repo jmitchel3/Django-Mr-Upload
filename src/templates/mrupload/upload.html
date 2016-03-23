@@ -9,7 +9,7 @@
             $('#multiple-file-form'),
             {
                 validation: {
-                    acceptFiles: 'video/*',
+                    acceptFiles: {{ VALID_FILE_MIME_TYPES|safe }},
                     sizeLimit: {{ MAX_VIDEO_FILE_SIZE }}
                 }
             });

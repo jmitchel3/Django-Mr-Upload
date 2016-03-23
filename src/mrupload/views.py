@@ -25,6 +25,7 @@ class UploadView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super(UploadView, self).get_context_data(**kwargs)
         context['MAX_VIDEO_FILE_SIZE'] = settings.MAX_VIDEO_FILE_SIZE
+        context['VALID_FILE_MIME_TYPES'] = settings.VALID_FILE_MIME_TYPES
 
         return context
 
